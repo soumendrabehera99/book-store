@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head data-th-replace="~{fragment :: head}"> </head>
+  <body>
+    <header data-th-replace="~{fragment :: header}"></header>
+
+    <main>
+      <nav data-th-replace="~{fragment :: nav('/home','Back to home')}"></nav>
+
+      <section>
+        <form action="/create-book" method="post">
+          <div>
+            <label for="book-name">Book Name</label>
+            <input
+              type="text"
+              name="bookName"
+              id="book-name"
+              placeholder="eg: java for beginners"
+            />
+          </div>
+          <div>
+            <label for="book-author">Book Author</label>
+            <input
+              type="text"
+              name="bookAuthor"
+              id="book-author"
+              placeholder="eg: Rashmi Kanta Das"
+            />
+          </div>
+          <div>
+            <label for="total-page">Total Pages</label>
+            <input
+              type="text"
+              name="totalPage"
+              id="total-page"
+              placeholder="eg: 612"
+            />
+          </div>
+          <div>
+            <label for="publication-date">Total Pages</label>
+            <input
+              type="Date"
+              name="publicationDate"
+              id="publication-date"
+              placeholder="eg: 12-02-1999"
+            />
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="bookFormat"
+              id="paper-back"
+              value="PAPERBACK"
+            />
+            <label for="paper-back">Paper Back</label>
+
+            <input
+              type="radio"
+              name="bookFormat"
+              id="hard-cover"
+              value="HARDCOVER"
+            />
+            <label for="hard-cover">Hard Cover</label>
+          </div>
+          <div>
+            <label for="book-category"></label>
+            <select name="category" id="book-category">
+              <option value="technology">Technology</option>
+              <option value="sports">Sports</option>
+              <option value="health">Health</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="science">Science</option>
+              <option value="business">Business</option>
+              <option value="education">Education</option>
+              <option value="travel">Travel</option>
+              <option value="food">Food</option>
+              <option value="fashion">Fashion</option>
+              <option value="politics">Politics</option>
+              <option value="environment">Environment</option>
+              <option value="finance">Finance</option>
+              <option value="lifestyle">Lifestyle</option>
+              <option value="history">History</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="availability"
+              id="amazon"
+              value="Amazon"
+            />
+            <label for="amazon">Amazon</label>
+            <input
+              type="checkbox"
+              name="availability"
+              id="flipkart"
+              value="Flipkart"
+            />
+            <label for="flipkart">Flipkart</label>
+            <input
+              type="checkbox"
+              name="availability"
+              id="offline"
+              value="Offline"
+            />
+            <label for="offline">Offline</label>
+          </div>
+          <div>
+            <label for="description">Book Description</label>
+            <textarea name="description" id="description"></textarea>
+          </div>
+
+          <input type="submit" name="submit" id="submit" />
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
