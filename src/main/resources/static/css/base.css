@@ -6,6 +6,34 @@
   color-scheme: dark white;
 }
 header {
-    display: flex;
-    align-items: center;
+  background-color: #f9e400;
+  padding-block: 1rem;
+  box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.3);
+}
+header h1{
+  text-shadow: 10px 20px 20px rgba(0, 0, 0, 0.5);
+}
+body {
+  background-color: #7c00fe;
+  font-family: "Lexend", sans-serif;
+  color: #f5004f;
+}
+main {
+  width: 80%;
+  margin: 2rem auto;
+}
+main nav {
+  text-align: right;
+}
+main nav a {
+  font-size: 1.2rem;
+  color: #FFAF00;
+  text-decoration: none;
+  background-color: #7c00fe;
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+  box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.3);
+ }
+main section{
+  margin-top: 1rem;
 }
