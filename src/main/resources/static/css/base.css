@@ -5,18 +5,18 @@
   box-sizing: border-box;
   color-scheme: dark white;
 }
-header {
-  background-color: #f9e400;
-  padding-block: 1rem;
-  box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.3);
-}
-header h1{
-  text-shadow: 10px 20px 20px rgba(0, 0, 0, 0.5);
-}
 body {
   background-color: #7c00fe;
   font-family: "Lexend", sans-serif;
   color: #f5004f;
+}
+header {
+  background-color: #f9e400;
+  padding: 1rem;
+  box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.3);
+}
+header h1 {
+  text-shadow: 10px 20px 20px rgba(0, 0, 0, 0.5);
 }
 main {
   width: 80%;
@@ -27,13 +27,13 @@ main nav {
 }
 main nav a {
   font-size: 1.2rem;
-  color: #FFAF00;
+  color: #ffaf00;
   text-decoration: none;
   background-color: #7c00fe;
   padding: 0.5rem;
   border-radius: 0.8rem;
   box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.3);
- }
-main section{
+}
+main section {
   margin-top: 1rem;
 }

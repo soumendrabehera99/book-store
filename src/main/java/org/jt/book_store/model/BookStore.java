@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class BookStore {
     private String bookName;
-    private String bookAuthor;
+    private String authorName;
     private int totalPage;
     private LocalDate publicationDate;
     private BookFormat bookFormat;
