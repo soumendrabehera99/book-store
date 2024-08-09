@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head data-th-replace="~{fragment :: html}"></head>
+  <head data-th-replace="~{fragment :: head(~{:: link})}">
+    <link rel="stylesheet" href="/css/book-details.css" />
+  </head>
   <body>
     <header data-th-replace="~{fragment :: header}"></header>
+    <main>
+      <nav data-th-replace="fragment :: nav('/home','Back to Home')"></nav>
+    </main>
   </body>
 </html>

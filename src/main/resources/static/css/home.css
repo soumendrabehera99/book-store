@@ -1,0 +1,29 @@
+section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+article {
+  background-color: #ffaf00;
+  border: 2px solid black;
+  border-radius: 2rem;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s;
+}
+article:hover {
+  scale: 1.02;
+  background-color: white;
+}
+.card-head {
+  border-bottom: 1px solid black;
+  border-radius: 2rem;
+}
+img {
+  width: 100%;
+  object-fit: cover;
+  padding: 0.5rem;
+  border-radius: 2rem;
+}
+.card-body {
+  padding: 1rem;
+}

@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head data-th-replace="~{fragment :: head(~{})}"> </head>
+  <head data-th-replace="~{fragment :: head(~{:: link})}">
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
   <body>
     <header data-th-replace="~{fragment :: header}"></header>
     <main>
       <nav data-th-replace="~{fragment :: nav('/new-book','New Book')}"></nav>
 
-      <section>books</section>
+      <section>
+        <article data-th-each="book : ${books}" data-th-object="${book}">
+          <div class="card-head">
+            <img
+              src="https://w0.peakpx.com/wallpaper/975/852/HD-wallpaper-books-reading-books-background-with-books-bookshelf-thumbnail.jpg"
+              alt="......"
+              height="200px"
+            />
+          </div>
+          <div class="card-body">
+            <h3 data-th-text="*{bookName}"></h3>
+            <a href="/details">Read More</a>
+          </div>
+        </article>
+      </section>
     </main>
   </body>
 </html>
