@@ -1,9 +1,15 @@
 package org.jt.book_store.service;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.jt.book_store.dto.BookDetailsReponse;
 import org.jt.book_store.dto.HomePageRequest;
+import org.jt.book_store.model.BookFormat;
 import org.jt.book_store.model.BookStore;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -54,5 +60,38 @@ public class BookStoreService {
             return new HomePageRequest(bookId, bookName);
         };
         return rowMapper;
+    }
+
+    public BookDetailsReponse getBookDetails(int id) {
+        String sql = "SELECT * FROM book_store where book_id=?";
+
+        return jdbcTemplate.queryForObject(sql, bookDetailsRowMapper(), id);
+    }
+
+    public RowMapper<BookDetailsReponse> bookDetailsRowMapper() {
+        // RowMapper<BookDetailsReponse> rowMapper
+        return (resultSet, rowNumber) -> {
+            int bookId = resultSet.getInt("book_id");
+            String bookName = resultSet.getString("book_name");
+            String authorName = resultSet.getString("author_name");
+            int totalPage = resultSet.getInt("total_page");
+            Date publicationDate = resultSet.getDate("publication_date");
+            String bookFormat = resultSet.getString("book_format");
+            String category = resultSet.getString("category");
+            String availability = resultSet.getString("availability");
+            String description = resultSet.getString("book_description");
+
+            return new BookDetailsReponse(bookId, bookName, authorName, totalPage, sqlDateToLocalDate(publicationDate),
+                    BookFormat.valueOf(bookFormat), category, csvToList(availability), description);
+        };
+    }
+
+    private LocalDate sqlDateToLocalDate(Date date) {
+        var formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return LocalDate.parse(formatter.format(date));
+    }
+
+    private List<String> csvToList(String availability) {
+        return Arrays.stream(availability.split(",")).toList();
     }
 }

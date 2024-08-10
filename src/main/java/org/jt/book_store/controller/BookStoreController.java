@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,13 +28,14 @@ public class BookStoreController {
     }
 
     @GetMapping("/details")
-    public String details() {
+    public String details(@RequestParam int id, Model model) {
+        model.addAttribute("book", service.getBookDetails(id));
         return "book-details";
     }
 
     @PostMapping("/create-book")
     public String addBook(@ModelAttribute BookStore bookStore) {
         service.createBook(bookStore);
-        return "new-book";
+        return "redirect:/home";
     }
 }
