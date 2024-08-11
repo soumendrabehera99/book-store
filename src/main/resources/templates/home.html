@@ -9,20 +9,37 @@
       <nav data-th-replace="~{fragment :: nav('/new-book','New Book')}"></nav>
 
       <section>
-        <article data-th-each="book : ${books}" data-th-object="${book}">
+        <article data-th-each="book :${books}" data-th-object="${book}">
           <div class="card-head">
             <img
-              src="https://w0.peakpx.com/wallpaper/975/852/HD-wallpaper-books-reading-books-background-with-books-bookshelf-thumbnail.jpg"
-              alt="......"
-              height="200px"
+              data-th-src="|/book/image/*{bookId}|"
+              alt="......."
+              style="height: 200px"
             />
           </div>
           <div class="card-body">
-            <h3 data-th-text="*{bookName}"></h3>
-            <a data-th-href="|/details?id=*{bookId}|">Read More</a>
+            <h4 data-th-text="*{bookName}"></h4>
+            <a data-th-href="|/details?bookId=*{bookId}|" class="anchor"
+              >Read more</a
+            >
+          </div>
+          <div class="card-footer flex-between p-half">
+            <a data-th-href="|/update-book?id=*{bookId}|" class="anchor"
+              >Update</a
+            >
+            <button
+              class="link-button anchor"
+              type="button"
+              data-th-onClick="|onRemove(*{bookId})|"
+            >
+              Remove
+            </button>
+            <!-- <a data-th-href="|/remove-book?id=*{bookId}|">Delete</a> -->
           </div>
         </article>
       </section>
     </main>
+
+    <script src="/js/home.js"></script>
   </body>
 </html>

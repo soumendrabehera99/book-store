@@ -22,14 +22,15 @@ import lombok.RequiredArgsConstructor;
 public class BookStoreService {
     private final JdbcTemplate jdbcTemplate;
 
-    public void createBook(BookStore bookStore) {
+    public void createBook(BookStore bookStore, String filepath) {
         String sql = """
                 INSERT INTO book_store(
                 book_name,author_name,
                 total_page,publication_date,
                 book_format,category,
-                availability,book_description
-                )values(?,?,?,?,?,?,?,?)
+                availability,book_description,
+                book_image
+                )values(?,?,?,?,?,?,?,?,?)
                 """;
         jdbcTemplate.update(sql,
                 bookStore.getBookName(),
@@ -39,7 +40,7 @@ public class BookStoreService {
                 bookStore.getBookFormat().name(),
                 bookStore.getCategory(),
                 listToCSV(bookStore.getAvailability()),
-                bookStore.getDescription());
+                bookStore.getDescription(), filepath);
     }
 
     private String listToCSV(List<String> list) {
@@ -94,4 +95,36 @@ public class BookStoreService {
     private List<String> csvToList(String availability) {
         return Arrays.stream(availability.split(",")).toList();
     }
+
+    public String getBookImageById(int id) {
+        String sql = "SELECT book_image FROM book_store where book_id = ?";
+        RowMapper<String> rowMapper = (resultSet, rowNumber) -> resultSet.getString("book_image");
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
+    public void deleteBookbyId(int id) {
+        String sql = "DELETE FROM book_store where book_id=?";
+        jdbcTemplate.update(sql, id);
+    }
+
+    public void updateBook(int bookId, BookStore bookStore) {
+        String sql = """
+                UPDATE book_store set book_name =?,author_name=?,
+                total_page=?,publication_date=?,
+                book_format=?,category=?,
+                availability=?,book_description=?
+                WHERE book_id = ?
+                """;
+
+        jdbcTemplate.update(sql,
+                bookStore.getBookName(),
+                bookStore.getAuthorName(),
+                bookStore.getTotalPage(),
+                bookStore.getPublicationDate(),
+                bookStore.getBookFormat().name(),
+                bookStore.getCategory(),
+                listToCSV(bookStore.getAvailability()),
+                bookStore.getDescription(), bookId);
+    }
+
 }

@@ -12,7 +12,7 @@ article {
 }
 article:hover {
   scale: 1.02;
-  background-color: white;
+  background-color: #7c00fe;
 }
 .card-head {
   border-bottom: 1px solid black;
